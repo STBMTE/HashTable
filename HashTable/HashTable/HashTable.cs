@@ -9,11 +9,16 @@ namespace HashTable
     class HashTable <TKey, TValue>
     {
         private TValue[] Items = new TValue[2000];
+        private TValue DelitSimbol {get; set;} 
 
         public TValue[] GetItems()
         {
             return Items;
         }
+        
+        public HashTable(TValue delitSimbol){
+        DelitSimbol = delitSimbol;
+       } 
 
         public void Add(TKey key, TValue item)
         {
@@ -21,7 +26,7 @@ namespace HashTable
             int index = HashCode % 999;
             while (index < Items.Length)
             {
-                if (!Items[index].Equals(0))
+                if (!Items[index].Equals(0) && !Items[index].Equels(DeliteSymbol))
                 {
                     index++;
                 }
@@ -62,7 +67,8 @@ namespace HashTable
             {
                 if (Items[i].Equals(value))
                 {
-                    Items[i] = "";
+                    Items[i] = DeliteSimbol;
+                    break;
                 }
             }
         }
